@@ -28,7 +28,7 @@ export default function HomePage() {
         >
             <Navbar toggleDarkMode={toggleDarkMode} isDark={darkMode} />
             <Header />
-            <ContentBody />
+            {/* <ContentBody /> */}
             {/* <ContactSection /> */}
         </div>
     );
