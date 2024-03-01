@@ -23,9 +23,4 @@
     .d5 {
         @apply bg-pink-300 !important;
     }
-
-    .custClass {
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: #fff;
-    }
 }
