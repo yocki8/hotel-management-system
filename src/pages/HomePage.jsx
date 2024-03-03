@@ -5,14 +5,13 @@ import Navbar from "../components/Navbar.jsx";
 import ContentBody from "../components/ContentBody.jsx";
 
 export default function HomePage() {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
 
     useEffect(() => {
         const data = window.localStorage.getItem("darkMode");
         const isDark = JSON.parse(data);
 
         setDarkMode(isDark);
-        console.log(isDark);
     }, []);
 
     useEffect(() => {
@@ -24,12 +23,12 @@ export default function HomePage() {
     };
     return (
         <div
-            className={` grid h-full font-['Poppins']  dark:text-white  ${darkMode ? "dark bg-black" : "bg-white"}`}
+            className={`grid h-full min-h-dvh font-['Poppins'] transition  duration-300 dark:text-white ${darkMode ? "dark bg-black" : "bg-white"}`}
         >
             <Navbar toggleDarkMode={toggleDarkMode} isDark={darkMode} />
             <Header />
-            {/* <ContentBody /> */}
-            {/* <ContactSection /> */}
+            <ContentBody isDark={darkMode} />
+            <ContactSection />
         </div>
     );
 }

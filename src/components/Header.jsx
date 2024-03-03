@@ -10,7 +10,7 @@ function Number({ n }) {
         from: { number: 0 },
         number: n,
         delay: 200,
-        config: { mass: 1, tension: 20, friction: 10 },
+        config: { mass: 3, tension: 20, friction: 10 },
     });
     return <animated.div>{number.to((n) => n.toFixed(0))}</animated.div>;
 }
@@ -19,8 +19,8 @@ const Welcome = () => {
     const GetStarted = () => {
         return (
             <div className="grid place-items-center">
-                <button className="duration-400 my-auto rounded-xl bg-yellow-600 px-20 py-4 text-2xl font-semibold text-white transition hover:bg-yellow-400">
-                    Get Started
+                <button className="duration-400  my-auto rounded-xl border-4 border-black/50 bg-yellow-600 px-20 py-4 text-2xl font-semibold text-white transition hover:bg-yellow-400 dark:border-white">
+                    BOOK NOW
                 </button>
             </div>
         );
@@ -29,7 +29,7 @@ const Welcome = () => {
     const Counters = ({ roomType, number }) => {
         return (
             <li>
-                <h2 className="md:text-xl text-[#4a4a4a]  dark:text-[#bcb1b1]">
+                <h2 className="text-[#4a4a4a] md:text-xl  dark:text-[#bcb1b1]">
                     {roomType}
                 </h2>
                 <h1 className="text-center text-[3rem] font-bold ">
@@ -54,7 +54,7 @@ const Welcome = () => {
 
             <GetStarted />
 
-            <ul className="text-center flex items-center justify-between md:px-10">
+            <ul className="flex items-center justify-between text-center md:px-10">
                 <Counters roomType={"Basic Rooms"} number={50} />
                 <Counters roomType={"Luxury Rooms"} number={120} />
                 <Counters roomType={"Suite"} number={60} />
@@ -66,7 +66,10 @@ const Welcome = () => {
 const SunExtra = () => {
     return (
         <span className="pointer-events-none absolute">
-            <img src={halfSun} className="max-w-[80%] rotate-[45deg] opacity-20 dark:md:opacity-10"></img>
+            <img
+                src={halfSun}
+                className="max-w-[80%] rotate-[45deg] opacity-20 dark:md:opacity-10"
+            ></img>
         </span>
     );
 };
@@ -76,6 +79,7 @@ const HotelImages = () => {
         return (
             <img
                 className="h-full w-full object-cover transition-all duration-700 hover:scale-125"
+                draggable={false}
                 src={imgNo}
             ></img>
         );
@@ -102,7 +106,7 @@ export default function Header() {
     return (
         <>
             <SunExtra />
-            <header className=" px-4 py-20 md:flex">
+            <header className="min-h-[90vh]  px-4 py-20 md:flex">
                 <Welcome />
                 <span className="bg mx-5 hidden w-[0.1%] bg-gradient-to-b from-transparent via-black to-transparent md:inline-block dark:via-white"></span>
                 <HotelImages />
