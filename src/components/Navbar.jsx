@@ -5,7 +5,7 @@ import dayModeIcon from "/src/assets/svg/day-mode.svg";
 
 export default function Navbar({ toggleDarkMode, isDark }) {
     return (
-        <nav className="flex h-[10vh] justify-between px-[2vw] py-5 ">
+        <nav className="flex md:h-[15vh] justify-between px-[2vw] py-5 ">
             <ul className="flex items-center gap-2 md:gap-4">
                 <li>
                     <h1 className="text-2xl font-extrabold text-yellow-600 ">
