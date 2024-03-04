@@ -42,11 +42,11 @@ const Welcome = () => {
         <div className="grid gap-16  md:w-[57%]">
             <div className="grid place-items-center">
                 <div className=" overflow-hidden">
-                    <h1 className="animate__animated animate__slideInUp text-center text-[3.7rem] font-bold  leading-[4.7rem]">
+                    <h1 className="animate__animated animate__slideInDown text-center text-[3.7rem] font-bold  leading-[4.7rem]">
                         Welcome to sunrise Hotels
                     </h1>
                 </div>
-                <p className="mt-4  w-1/2 min-w-60 text-center text-lg text-[#4a4a4a] md:text-xl  dark:text-[#bcb1b1]">
+                <p className="mt-4 w-1/2 min-w-60 text-center text-[#4a4a4a]  dark:text-[#bcb1b1]">
                     Experience an Exquisite Hotel Immersed in Rich History and
                     Timeless Elegance.
                 </p>
@@ -68,7 +68,7 @@ const SunExtra = () => {
         <span className="pointer-events-none absolute">
             <img
                 src={halfSun}
-                className="max-w-[80%] rotate-[45deg] opacity-20 dark:md:opacity-10"
+                className="dark:md:opacity-10 max-w-[80%] rotate-[45deg] opacity-20"
             ></img>
         </span>
     );

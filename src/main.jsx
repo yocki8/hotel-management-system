@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import ContactPage from "./pages/ContantPage";
+import ContactPage from "./pages/ContactPage";
 import RoomPage from "./pages/RoomsPage";
 import NoPageFound from "./pages/NoPageFound";
 import "./index.css";
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-    // <React.StrictMode>
+    <React.StrictMode>
         <RouterProvider router={router} />
-    // </React.StrictMode>
+    </React.StrictMode>
 );
