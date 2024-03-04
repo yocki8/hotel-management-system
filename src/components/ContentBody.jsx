@@ -196,7 +196,7 @@ const AboutHotel = () => {
                 <img
                     ref={sunSvg}
                     src={sun}
-                    className="absolute bottom-0 left-1/2 h-52 -translate-x-1/2 dark:invert"
+                    className="absolute bottom-0 left-1/2 h-52 -translate-x-1/2"
                 ></img>
             </div>
         </section>
