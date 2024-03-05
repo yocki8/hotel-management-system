@@ -5,6 +5,8 @@ import { cn } from "../utils/cn";
 import * as React from "react";
 
 //mask
+
+//z-
 export const MaskContainer = ({
     children,
     revealText,
@@ -74,7 +76,7 @@ export const MaskContainer = ({
                     onMouseLeave={() => {
                         setIsHovered(false);
                     }}
-                    className="relative z-20 mx-auto   text-center  font-bold "
+                    className="relative z-10 mx-auto   text-center  font-bold "
                 >
                     {children}
                 </div>

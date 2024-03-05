@@ -5,6 +5,9 @@ import ContentBody from "../components/ContentBody.jsx";
 
 export default function HomePage() {
     const [darkMode, setDarkMode] = useState(true);
+    const [matches, setMatches] = useState(
+        window.matchMedia("(min-width: 768px)").matches,
+    );
 
     useEffect(() => {
         const data = window.localStorage.getItem("darkMode");
@@ -16,17 +19,27 @@ export default function HomePage() {
         window.localStorage.setItem("darkMode", JSON.stringify(darkMode));
     }, [darkMode]);
 
+
+    useEffect(() => {
+        window
+            .matchMedia("(min-width: 768px)")
+            .addEventListener("change", (e) => setMatches(e.matches));
+    }, []);
+
     const toggleDarkMode = () => {
-        console.log(1);
         setDarkMode(!darkMode);
     };
     return (
         <div
             className={`grid h-full min-h-dvh font-['Poppins'] transition  duration-300 dark:text-white ${darkMode ? "dark bg-black" : "bg-white"}`}
         >
-            <Navbar toggleDarkMode={toggleDarkMode} isDark={darkMode} />
-            <Header isDark={darkMode} />
-            <ContentBody isDark={darkMode} />
+            <Navbar
+                matches={matches}
+                toggleDarkMode={toggleDarkMode}
+                isDark={darkMode}
+            />
+            <Header isDark={darkMode} matches={matches} />
+            <ContentBody isDark={darkMode} matches={matches} />
         </div>
     );
 }

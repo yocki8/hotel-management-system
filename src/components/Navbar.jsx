@@ -15,7 +15,8 @@ export default function Navbar({ toggleDarkMode, isDark }) {
 
                 <li>
                     <div className="h-6 w-6 md:h-8 md:w-8">
-                        <img className="dark:invert" src={profileIcon}></img>
+
+                        <img alt="profile icon" className="dark:invert" src={profileIcon}></img>
                     </div>
                 </li>
 
@@ -25,13 +26,13 @@ export default function Navbar({ toggleDarkMode, isDark }) {
                             className=" duration-400 h-6 w-6 transition md:h-8 md:w-8 dark:opacity-0"
                             onClick={toggleDarkMode}
                         >
-                            <img src={dayModeIcon}></img>
+                            <img alt="day mode icon" src={dayModeIcon}></img>
                         </button>
                         <button
                             className="duration-400 h-6 w-6 opacity-0 transition md:h-8 md:w-8 dark:opacity-100 dark:invert"
                             onClick={toggleDarkMode}
                         >
-                            <img src={nightModeIcon}></img>
+                            <img alt="night mode icon" src={nightModeIcon}></img>
                         </button>
                     </div>
                 </li>
