@@ -16,7 +16,7 @@ export default function AboutHotel({ isDark, matches }) {
         if (matches) {
             gsap.from(about.current, {
                 y: 400,
-                opacity: 0,
+                autoalpha: 0,
                 duration: 2,
                 scrollTrigger: {
                     trigger: about.current,
@@ -26,7 +26,7 @@ export default function AboutHotel({ isDark, matches }) {
 
             gsap.from(about2.current, {
                 y: 400,
-                opacity: 0,
+                autoalpha: 0,
                 duration: 2,
                 scrollTrigger: {
                     trigger: about2.current,
@@ -35,7 +35,7 @@ export default function AboutHotel({ isDark, matches }) {
             });
         }
         gsap.from(sunSvg.current, {
-            opacity: 0,
+            autoalpha: 0,
             duration: 3,
             scrollTrigger: {
                 trigger: sunSvg.current,
@@ -48,7 +48,7 @@ export default function AboutHotel({ isDark, matches }) {
     const btn = useRef(null);
 
     return (
-        <section className="relative ">
+        <section className="relative">
             <div className=" sticky top-0 flex justify-center ">
                 {matches && (
                     <MaskContainer

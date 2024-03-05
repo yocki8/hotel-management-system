@@ -19,7 +19,6 @@ export default function HomePage() {
         window.localStorage.setItem("darkMode", JSON.stringify(darkMode));
     }, [darkMode]);
 
-
     useEffect(() => {
         window
             .matchMedia("(min-width: 768px)")
@@ -31,7 +30,7 @@ export default function HomePage() {
     };
     return (
         <div
-            className={`grid h-full min-h-dvh font-['Poppins'] transition  duration-300 dark:text-white ${darkMode ? "dark bg-black" : "bg-white"}`}
+            className={`grid font-['Poppins'] transition  duration-300 text-[#2B2B28] dark:text-[#F1EFE6] ${darkMode ? "dark bg-[#2B2B28]" : "bg-[#F1EFE6]"}`}
         >
             <Navbar
                 matches={matches}

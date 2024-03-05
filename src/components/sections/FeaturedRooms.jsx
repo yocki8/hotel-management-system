@@ -19,13 +19,15 @@ const Room = ({ roomNo, id, currImg, isDark }) => {
 
     useGSAP(() => {
         gsap.from(image.current, {
-            opacity: 0,
+            autoalpha: 0,
             y: 200,
-            duration: Math.random() * 0.3 + 0.3,
+            duration: Math.random() * 0.7 + 1.3,
+            delay: 0.3,
+            ease: "power2.out",
             scrollTrigger: {
-                trigger: image.current,
-                start: "top bottom",
-                toggleActions: "play none none reverse",
+                trigger: currImg.current,
+                start: "20% bottom",
+                toggleActions: "play none none reset",
             },
         });
     });
@@ -41,22 +43,24 @@ const Room = ({ roomNo, id, currImg, isDark }) => {
 
     return (
         <div
-            className="relative h-fit w-fit overflow-hidden rounded-2xl"
+            ref={image}
+            className=" relative h-fit w-fit overflow-hidden rounded-2xl"
             style={{
-                boxShadow: `0px 0px 150px 2px ${isDark ? "black" : "white"}`,
+                boxShadow: `0px 0px 100px 2px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
             }}
         >
-            <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-white dark:text-black ">
-                0{id}
-            </span>
-            <img
-                alt={`featured room ${id}`}
-                ref={image}
-                onMouseOver={() => handleImgHover(roomNo)}
-                onMouseOut={() => handleImgOut()}
-                src={roomNo}
-                className="h-96 w-40 rounded-2xl object-cover transition-all duration-500 hover:h-[27rem] hover:w-96"
-            />
+            <div>
+                <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-[#F1EFE6] dark:text-[#2B2B28]">
+                    0{id}
+                </span>
+                <img
+                    alt={`featured room ${id}`}
+                    onMouseOver={() => handleImgHover(roomNo)}
+                    onMouseOut={() => handleImgOut()}
+                    src={roomNo}
+                    className="h-96 w-40 rounded-2xl object-cover transition-all duration-500 hover:h-[27rem] hover:w-96"
+                />
+            </div>
         </div>
     );
 };
@@ -72,19 +76,19 @@ export default function FeaturedRooms({ isDark, matches }) {
             wordSpacing: matches ? "400px" : "0",
             letterSpacing: matches ? "20px" : "6px",
             delay: matches ? "0.3" : "1",
-            opacity: matches ? "100" : "0",
+            autoalpha: matches ? "1" : "0",
             duration: 1,
-            fontSize: matches ? "5rem" : "none",
+            fontSize: matches ? "3rem" : "none",
             scrollTrigger: {
                 trigger: featuredText.current,
-                toggleActions: "play none none reverse",
+                toggleActions: "play none none reset",
                 start: "top bottom",
             },
         });
     });
 
     return (
-        <section className="mb-44 mt-10 md:my-auto md:h-[150dvh] ">
+        <section className="mb-44 mt-10 md:my-auto md:h-[200dvh] ">
             <div className="sticky top-8 h-[150%] overflow-hidden md:h-dvh">
                 <h1
                     ref={featuredText}

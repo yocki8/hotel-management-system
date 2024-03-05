@@ -1,7 +1,7 @@
-import header1 from "/src/assets/images/header1.jpg";
-import header2 from "/src/assets/images/header2.jpg";
-import header3 from "/src/assets/images/header3.jpg";
-import header4 from "/src/assets/images/header4.webp";
+import header1 from "/src/assets/images/header/header1.jpg";
+import header2 from "/src/assets/images/header/header2.jpg";
+import header3 from "/src/assets/images/header/header3.jpg";
+import header4 from "/src/assets/images/header/header4.webp";
 import halfSun from "/src/assets/images/half-sun.png";
 import { useSpring, animated } from "react-spring";
 import { useGSAP } from "@gsap/react";
@@ -29,7 +29,7 @@ const Welcome = ({ isDark, matches }) => {
         });
 
         gsap.from(text.words, {
-            opacity: 0,
+            autoalpha: 0,
             stagger: 0.3,
             delay: 1,
         });
@@ -112,7 +112,7 @@ const SunExtra = () => {
     );
 };
 
-const HotelImages = () => {
+const HotelImages = ({ isDark }) => {
     const Image = ({ imgNo }) => {
         return (
             <img
@@ -149,7 +149,7 @@ export default function Header({ isDark, matches }) {
             <header className="px-4 py-20 md:flex md:min-h-[85vh]">
                 <Welcome matches={matches} isDark={isDark} />
                 <span className="bg ml-5 mr-7 hidden w-[0.1%] bg-gradient-to-b from-transparent via-black to-transparent md:inline-block dark:via-white"></span>
-                <HotelImages />
+                <HotelImages isDark={isDark} />
             </header>
         </>
     );

@@ -25,7 +25,7 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
     useGSAP(() => {
         if (matches) {
             gsap.to(element.current, {
-                opacity: 0,
+                autoalpha: 0,
                 rotateX: "90deg",
                 scrollTrigger: {
                     trigger: element.current,
@@ -46,7 +46,7 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
             });
 
             gsap.to(cardImg.current, {
-                opacity: 0,
+                autoalpha: 0,
                 scrollTrigger: {
                     trigger: card.current,
                     start: `${id == 5 ? "top" : "bottom"} ${id * 5 + 40}%`,
@@ -151,7 +151,7 @@ export default function Offers({ isDark, matches }) {
                 wordSpacing: matches ? "400px" : "0",
                 letterSpacing: matches ? "20px" : "6px",
                 delay: matches ? "0.3" : "1",
-                opacity: matches ? "100" : "0",
+                autoalpha: matches ? "1" : "0",
                 duration: 1,
                 fontSize: matches ? "5rem" : "none",
                 scrollTrigger: {

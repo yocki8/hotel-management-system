@@ -16,11 +16,11 @@ export default {
             keyframes: {
                 spotlight: {
                     "0%": {
-                        opacity: 0,
+                        autoalpha: 0,
                         transform: "translate(-72%, -62%) scale(0.5)",
                     },
                     "100%": {
-                        opacity: 1,
+                        autoalpha: 1,
                         transform: "translate(-50%,-40%) scale(1)",
                     },
                 },
