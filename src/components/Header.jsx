@@ -22,7 +22,6 @@ function Number({ n }) {
 
 const Welcome = ({ isDark, matches }) => {
     const welcomeText = useRef(null);
-    const sunriseWord = useRef(null);
 
     useGSAP(() => {
         const text = new SplitType(welcomeText.current, {
@@ -61,7 +60,7 @@ const Welcome = ({ isDark, matches }) => {
             return (
                 <li className="relative h-full">
                     <div
-                        className=" mt-10 relative"
+                        className=" relative mt-10"
                         style={{
                             transform: "perspective(2cm) rotateX(50deg)",
                         }}
@@ -92,7 +91,7 @@ const Welcome = ({ isDark, matches }) => {
                             }}
                             className="absolute left-1/2 top-1/2 grid h-[6.4rem] w-[6.4rem] -translate-x-1/2 -translate-y-1/2 items-center rounded-full bg-white/0"
                         >
-                            <h1 className="m-auto text-2xl grid h-14 w-14 items-center rounded-full  font-bold outline">
+                            <h1 className="m-auto grid h-14 w-14 items-center rounded-full text-2xl  font-bold outline">
                                 <Number n={number} />
                             </h1>
                         </div>
@@ -102,7 +101,7 @@ const Welcome = ({ isDark, matches }) => {
         }
     };
     return (
-        <div className="grid gap-16  md:w-[57%]">
+        <div className="grid gap-16 md:w-[57%]">
             <div className="z-10 mx-4 grid place-items-center md:mx-0">
                 <h1
                     ref={welcomeText}
@@ -118,7 +117,7 @@ const Welcome = ({ isDark, matches }) => {
 
             <GetStarted />
 
-            <ul className="flex h-[200%] -translate-y-24 md:translate-y-0  items-center justify-evenly overflow-x-hidden text-center md:-mt-8 md:h-[100%] md:justify-between md:overflow-hidden md:px-10">
+            <ul className="flex h-[200%] -translate-y-24 items-center justify-evenly overflow-x-hidden text-center md:h-[100%] md:translate-y-0 md:justify-between md:overflow-hidden md:px-10">
                 <Counters
                     matches={matches}
                     roomType={"Basic Rooms"}
@@ -160,7 +159,7 @@ const HotelImages = () => {
     };
 
     return (
-        <div className=" -mt-8 mx-4 grid grid-cols-2 gap-2 *:overflow-hidden md:mt-0 md:w-[43%]  md:grid-rows-[repeat(2,210px)] md:gap-6 ">
+        <div className=" mx-4 -mt-8 grid grid-cols-2 gap-2 *:overflow-hidden md:mt-0 md:w-[43%]  md:grid-rows-[repeat(2,210px)] md:gap-6 ">
             <div className="rounded-tl-[30%] md:rounded-l-full">
                 <Image imgNo={header1} />
             </div>
@@ -181,7 +180,7 @@ export default function Header({ isDark, matches }) {
     return (
         <>
             <SunExtra />
-            <header className="py-20 md:flex md:min-h-[85vh] md:px-4">
+            <header className="py-20 md:flex md:min-h-[85vh]">
                 <Welcome matches={matches} isDark={isDark} />
                 <span className="bg ml-5 mr-7 hidden w-[0.1%] bg-gradient-to-b from-transparent via-black to-transparent md:inline-block dark:via-white"></span>
                 <HotelImages isDark={isDark} />
