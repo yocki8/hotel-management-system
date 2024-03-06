@@ -6,10 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function ContentBody({ isDark, matches }) {
     return (
-        <main
-            className=""
-            style={{ scrollbarColor: "transparent" }}
-        >
+        <main>
             <FeaturedRooms isDark={isDark} matches={matches} />
             <Offers isDark={isDark} matches={matches} />
             <AboutHotel isDark={isDark} matches={matches} />

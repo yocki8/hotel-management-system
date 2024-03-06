@@ -23,6 +23,7 @@
     "gsap": "^3.12.5",
     "react": "^18.2.0",
     "react-animated-cursor": "^2.11.2",
+    "react-curved-text": "^3.0.1",
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.4",
     "react-router-dom": "^6.22.1",

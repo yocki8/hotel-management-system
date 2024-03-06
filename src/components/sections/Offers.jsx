@@ -14,6 +14,7 @@ import spaSvg from "/src/assets/images/facility/svgs/spa.svg";
 import poolSvg from "/src/assets/images/facility/svgs/pool.svg";
 import theatreSvg from "/src/assets/images/facility/svgs/theatre.svg";
 
+//perspec
 const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
     const element = useRef(null);
     const card = useRef(null);
@@ -25,7 +26,7 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
     useGSAP(() => {
         if (matches) {
             gsap.to(element.current, {
-                autoalpha: 0,
+                opacity: 0,
                 rotateX: "90deg",
                 scrollTrigger: {
                     trigger: element.current,
@@ -35,8 +36,9 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
             });
         } else {
             gsap.to(cardText.current, {
-                background: isDark ? "#2e2e2e" : "#d1d1d1",
                 borderRadius: "1rem",
+                boxShadow: `-5px 5px 0 2px ${!isDark ? "#2B2B28" : "#F1EFE6"}`,
+                border: `1px solid ${!isDark ? "#2B2B28" : "#F1EFE6"}`,
                 color: "white",
                 scrollTrigger: {
                     trigger: card.current,
@@ -46,7 +48,7 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
             });
 
             gsap.to(cardImg.current, {
-                autoalpha: 0,
+                opacity: 0,
                 scrollTrigger: {
                     trigger: card.current,
                     start: `${id == 5 ? "top" : "bottom"} ${id * 5 + 40}%`,
@@ -151,7 +153,8 @@ export default function Offers({ isDark, matches }) {
                 wordSpacing: matches ? "400px" : "0",
                 letterSpacing: matches ? "20px" : "6px",
                 delay: matches ? "0.3" : "1",
-                autoalpha: matches ? "1" : "0",
+
+                opacity: matches ? "1" : "0",
                 duration: 1,
                 fontSize: matches ? "5rem" : "none",
                 scrollTrigger: {

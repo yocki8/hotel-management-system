@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
+import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 
@@ -19,7 +20,7 @@ const Room = ({ roomNo, id, currImg, isDark }) => {
 
     useGSAP(() => {
         gsap.from(image.current, {
-            autoalpha: 0,
+            opacity: 0,
             y: 200,
             duration: Math.random() * 0.7 + 1.3,
             delay: 0.3,
@@ -76,7 +77,7 @@ export default function FeaturedRooms({ isDark, matches }) {
             wordSpacing: matches ? "400px" : "0",
             letterSpacing: matches ? "20px" : "6px",
             delay: matches ? "0.3" : "1",
-            autoalpha: matches ? "1" : "0",
+            opacity: matches ? "1" : "0",
             duration: 1,
             fontSize: matches ? "3rem" : "none",
             scrollTrigger: {
@@ -145,95 +146,97 @@ export default function FeaturedRooms({ isDark, matches }) {
                         effect={"coverflow"}
                         grabCursor={true}
                         slidesPerView={"auto"}
+                        loop={true}
+                        spaceBetween={30}
                         coverflowEffect={{
                             rotate: 50,
-                            stretch: 10,
-                            depth: 100,
+                            stretch: 2,
+                            depth: 500,
                             modifier: 1,
-                            slideShadows: true,
+                            // slideShadows: true,
                         }}
-                        pagination={true}
+                        pagination={{ dynamicBullets: true, clickable: true }}
                         modules={[EffectCoverflow, Pagination]}
-                        className=" h-96 w-[80vw] overflow-hidden rounded-2xl"
+                        className="h-96 w-[80vw] overflow-hidden rounded-2xl"
                     >
-                        <SwiperSlide className=" relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-white dark:text-black ">
+                        <SwiperSlide className="relative h-full w-full rounded-2xl">
+                            <span className="dark:bg-[#2B2B28] pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] ">
                                 01
                             </span>
                             <span
                                 style={{
-                                    boxShadow: `inset 0 0 40px 10px ${isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)"}`,
+                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
                                 }}
-                                className=" absolute left-1/2 h-full w-full -translate-x-1/2 rounded-2xl"
+                                className=" absolute h-full w-full rounded-2xl"
                             ></span>
                             <img
                                 alt="featured room 1"
                                 src={room1}
-                                className=" m-auto h-96 rounded-2xl object-cover"
+                                className="m-auto h-96 w-full rounded-2xl object-cover outline-none"
                             ></img>
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-white dark:text-black ">
+                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
                                 02
                             </span>
                             <span
                                 style={{
-                                    boxShadow: `inset 0 0 40px 10px ${isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)"}`,
+                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
                                 }}
-                                className=" absolute left-1/2 h-full w-full -translate-x-1/2 rounded-2xl"
+                                className=" absolute h-full w-full rounded-2xl"
                             ></span>
                             <img
                                 alt="featured room 2"
                                 src={room2}
-                                className=" m-auto h-96 rounded-2xl object-cover"
+                                className=" m-auto h-full w-full rounded-2xl object-cover"
                             ></img>
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-white dark:text-black ">
+                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
                                 03
                             </span>
                             <span
                                 style={{
-                                    boxShadow: `inset 0 0 40px 10px ${isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)"}`,
+                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
                                 }}
-                                className=" absolute left-1/2 h-full w-full -translate-x-1/2 rounded-2xl"
+                                className=" absolute h-full w-full rounded-2xl"
                             ></span>
                             <img
                                 alt="featured room 3"
                                 src={room3}
-                                className=" m-auto h-96 rounded-2xl object-cover"
+                                className=" m-auto h-full w-full rounded-2xl object-cover"
                             ></img>
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-white dark:text-black ">
+                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
                                 04
                             </span>
                             <span
                                 style={{
-                                    boxShadow: `inset 0 0 40px 10px ${isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)"}`,
+                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
                                 }}
-                                className=" absolute left-1/2 h-full w-full -translate-x-1/2 rounded-2xl"
+                                className=" absolute h-full w-full rounded-2xl"
                             ></span>
                             <img
                                 alt="featured room 4"
                                 src={room4}
-                                className=" m-auto h-96 rounded-2xl object-cover"
+                                className=" m-auto h-full w-full rounded-2xl object-cover"
                             ></img>
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-white dark:text-black ">
+                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
                                 05
                             </span>
                             <span
                                 style={{
-                                    boxShadow: `inset 0 0 40px 10px ${isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)"}`,
+                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
                                 }}
-                                className=" absolute left-1/2 h-full w-full -translate-x-1/2 rounded-2xl"
+                                className=" absolute h-full w-full rounded-2xl"
                             ></span>
                             <img
                                 alt="featured room 5"
                                 src={room5}
-                                className=" m-auto h-96 rounded-2xl object-cover"
+                                className=" m-auto h-full w-full rounded-2xl object-cover"
                             ></img>
                         </SwiperSlide>
                     </Swiper>

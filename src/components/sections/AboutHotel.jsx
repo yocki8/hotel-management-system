@@ -16,7 +16,8 @@ export default function AboutHotel({ isDark, matches }) {
         if (matches) {
             gsap.from(about.current, {
                 y: 400,
-                autoalpha: 0,
+
+                opacity: 0,
                 duration: 2,
                 scrollTrigger: {
                     trigger: about.current,
@@ -26,7 +27,8 @@ export default function AboutHotel({ isDark, matches }) {
 
             gsap.from(about2.current, {
                 y: 400,
-                autoalpha: 0,
+
+                opacity: 0,
                 duration: 2,
                 scrollTrigger: {
                     trigger: about2.current,
@@ -35,7 +37,7 @@ export default function AboutHotel({ isDark, matches }) {
             });
         }
         gsap.from(sunSvg.current, {
-            autoalpha: 0,
+            opacity: 0,
             duration: 3,
             scrollTrigger: {
                 trigger: sunSvg.current,
@@ -70,32 +72,34 @@ export default function AboutHotel({ isDark, matches }) {
                             </h1>
                         }
                     >
-                        <h1
-                            ref={about2}
-                            className=" text-blue z-[10] mx-auto w-2/3 text-center text-[2rem] font-bold opacity-40 blur-[2px] dark:text-black "
-                        >
-                            Welcome to{" "}
-                            <span className="text-yellow-600">Sunrise</span>,
-                            where comfort meets luxury and every stay is a
-                            memorable experience. Our rooms are designed to be
-                            your home away from home, with modern amenities and
-                            breathtaking views. Book your stay with us today and
-                            discover the essence of hospitality at Sunrise.
-                        </h1>
-                        <button
-                            style={{
-                                boxShadow: `-10px 10px 5px ${isDark ? "black" : "white"}`,
-                            }}
-                            className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 -skew-x-6 overflow-hidden bg-yellow-600 px-6 py-6 text-[2rem] transition duration-500 hover:scale-105"
-                        >
-                            <div className="absolute left-0 top-0 grid h-full w-full place-items-center *:scale-0 *:hover:scale-[15]  ">
-                                <div
-                                    ref={btn}
-                                    className="-z-10 h-4 w-4 rounded-full bg-yellow-700 transition-all duration-1000 "
-                                ></div>
-                            </div>
-                            <h1 className="pointer-events-none">Book Now</h1>
-                        </button>
+                        <div ref={about2}>
+                            <h1 className=" text-blue z-[10] mx-auto w-2/3 text-center text-[2rem] font-bold opacity-40 blur-[2px] dark:text-black ">
+                                Welcome to{" "}
+                                <span className="text-yellow-600">Sunrise</span>
+                                , where comfort meets luxury and every stay is a
+                                memorable experience. Our rooms are designed to
+                                be your home away from home, with modern
+                                amenities and breathtaking views. Book your stay
+                                with us today and discover the essence of
+                                hospitality at Sunrise.
+                            </h1>
+                            <button
+                                style={{
+                                    boxShadow: `-10px 10px 5px ${isDark ? "black" : "white"}`,
+                                }}
+                                className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 -skew-x-6 overflow-hidden bg-yellow-600 px-6 py-6 text-[2rem] transition duration-500 hover:scale-105"
+                            >
+                                <div className="absolute left-0 top-0 grid h-full w-full place-items-center *:scale-0 *:hover:scale-[15]  ">
+                                    <div
+                                        ref={btn}
+                                        className="-z-10 h-4 w-4 rounded-full bg-yellow-700 transition-all duration-1000 "
+                                    ></div>
+                                </div>
+                                <h1 className="pointer-events-none">
+                                    Book Now
+                                </h1>
+                            </button>
+                        </div>
                     </MaskContainer>
                 )}
 

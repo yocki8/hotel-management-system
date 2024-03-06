@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import { useRef } from "react";
 import gsap from "gsap";
+import ReactCurvedText from "react-curved-text";
 
 function Number({ n }) {
     const { number } = useSpring({
@@ -29,7 +30,7 @@ const Welcome = ({ isDark, matches }) => {
         });
 
         gsap.from(text.words, {
-            autoalpha: 0,
+            opacity: 0,
             stagger: 0.3,
             delay: 1,
         });
@@ -56,24 +57,58 @@ const Welcome = ({ isDark, matches }) => {
                 </li>
             );
         } else {
+            if (roomType == "Suite") roomType += " Rooms";
             return (
-                <li className="h-full w-[30%] rounded-xl bg-gradient-to-br from-white to-[#d1d1d1] py-5 dark:from-black dark:to-[#2e2e2e]">
-                    <h1 className="h-10 text-xs">{roomType}</h1>
-                    <h1 className=" font-bold">
-                        <Number n={number} />
-                    </h1>
+                <li className="relative h-full">
+                    <div
+                        className=" mt-10 relative"
+                        style={{
+                            transform: "perspective(2cm) rotateX(50deg)",
+                        }}
+                    >
+                        <ReactCurvedText
+                            width={100}
+                            height={100}
+                            cx={50}
+                            cy={50}
+                            rx={35}
+                            ry={35}
+                            reversed={"reversed"}
+                            text={roomType}
+                            textProps={{
+                                style: {
+                                    fontSize: 20,
+                                    fontWeight: "bold",
+                                },
+                            }}
+                            textPathProps={{
+                                fill: `${isDark ? "#F1EFE6" : "black"}`,
+                            }}
+                            svgProps={{ className: "rotating-curved-text" }}
+                        />
+                        <div
+                            style={{
+                                background: `radial-gradient( ${!isDark ? "gray" : "black"},transparent)`,
+                            }}
+                            className="absolute left-1/2 top-1/2 grid h-[6.4rem] w-[6.4rem] -translate-x-1/2 -translate-y-1/2 items-center rounded-full bg-white/0"
+                        >
+                            <h1 className="m-auto text-2xl grid h-14 w-14 items-center rounded-full  font-bold outline">
+                                <Number n={number} />
+                            </h1>
+                        </div>
+                    </div>
                 </li>
             );
         }
     };
     return (
         <div className="grid gap-16  md:w-[57%]">
-            <div className="z-10 grid place-items-center">
+            <div className="z-10 mx-4 grid place-items-center md:mx-0">
                 <h1
                     ref={welcomeText}
                     className="text-center text-[3.7rem] font-bold  leading-[4.7rem]"
                 >
-                    Welcome to <span ref={sunriseWord}>sunrise</span> Hotels
+                    Welcome to sunrise Hotels
                 </h1>
                 <p className="mt-4 w-1/2 min-w-60 text-center text-[#4a4a4a]  dark:text-[#bcb1b1]">
                     Experience an Exquisite Hotel Immersed in Rich History and
@@ -83,7 +118,7 @@ const Welcome = ({ isDark, matches }) => {
 
             <GetStarted />
 
-            <ul className="-mt-8 flex items-center justify-around text-center md:my-0 md:justify-between md:px-10">
+            <ul className="flex h-[200%] -translate-y-24 md:translate-y-0  items-center justify-evenly overflow-x-hidden text-center md:-mt-8 md:h-[100%] md:justify-between md:overflow-hidden md:px-10">
                 <Counters
                     matches={matches}
                     roomType={"Basic Rooms"}
@@ -112,7 +147,7 @@ const SunExtra = () => {
     );
 };
 
-const HotelImages = ({ isDark }) => {
+const HotelImages = () => {
     const Image = ({ imgNo }) => {
         return (
             <img
@@ -125,7 +160,7 @@ const HotelImages = ({ isDark }) => {
     };
 
     return (
-        <div className=" mt-5 grid grid-cols-2 gap-2 *:overflow-hidden md:mt-0 md:w-[43%]  md:grid-rows-[repeat(2,210px)] md:gap-6 ">
+        <div className=" -mt-8 mx-4 grid grid-cols-2 gap-2 *:overflow-hidden md:mt-0 md:w-[43%]  md:grid-rows-[repeat(2,210px)] md:gap-6 ">
             <div className="rounded-tl-[30%] md:rounded-l-full">
                 <Image imgNo={header1} />
             </div>
@@ -146,7 +181,7 @@ export default function Header({ isDark, matches }) {
     return (
         <>
             <SunExtra />
-            <header className="px-4 py-20 md:flex md:min-h-[85vh]">
+            <header className="py-20 md:flex md:min-h-[85vh] md:px-4">
                 <Welcome matches={matches} isDark={isDark} />
                 <span className="bg ml-5 mr-7 hidden w-[0.1%] bg-gradient-to-b from-transparent via-black to-transparent md:inline-block dark:via-white"></span>
                 <HotelImages isDark={isDark} />
