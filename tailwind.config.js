@@ -25,6 +25,11 @@ export default {
                     },
                 },
             },
+
+            colors:{
+                'lighty': '#F1EFE6',
+                'darky' : '#2B2B28',
+            }
         },
     },
     plugins: [addVariablesForColors],

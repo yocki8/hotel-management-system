@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import room1 from "/src/assets/images/rooms/room1.png";
 import room2 from "/src/assets/images/rooms/room2.webp";
 import room3 from "/src/assets/images/rooms/room3.jpg";
@@ -51,7 +51,7 @@ const Room = ({ roomNo, id, currImg, isDark }) => {
             }}
         >
             <div>
-                <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-[#F1EFE6] dark:text-[#2B2B28]">
+                <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-[--lighty] dark:text-[--darky]">
                     0{id}
                 </span>
                 <img
@@ -66,34 +66,71 @@ const Room = ({ roomNo, id, currImg, isDark }) => {
     );
 };
 
+const RoomSlide = ({ id, roomNo, isDark }) => {
+    return (
+        <>
+            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[--lighty] p-2 text-5xl font-bold blur-[1px] dark:bg-[--darky] ">
+                0{id}
+            </span>
+            <span
+                style={{
+                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
+                }}
+                className=" absolute h-full w-full rounded-2xl"
+            ></span>
+            <img
+                alt="featured room 1"
+                src={roomNo}
+                className="m-auto h-96 w-full rounded-2xl object-cover outline-none"
+            ></img>
+        </>
+    );
+};
+
 export default function FeaturedRooms({ isDark, matches }) {
     const currImg = useRef(null);
     const featuredText = useRef(null);
-
+    const sect = useRef(null);
+    const scBar = useRef(null);
     gsap.registerPlugin(ScrollTrigger);
 
     useGSAP(() => {
         gsap.from(featuredText.current, {
-            wordSpacing: matches ? "400px" : "0",
-            letterSpacing: matches ? "20px" : "6px",
+            wordSpacing: matches ? "1vw" : "0",
+            letterSpacing: matches ? "2vw" : "6px",
             delay: matches ? "0.3" : "1",
-            opacity: matches ? "1" : "0",
+            opacity: "0",
             duration: 1,
-            fontSize: matches ? "3rem" : "none",
+            fontSize: matches ? "5vw" : "none",
             scrollTrigger: {
                 trigger: featuredText.current,
                 toggleActions: "play none none reset",
                 start: "top bottom",
             },
         });
+
+        gsap.from(scBar.current, {
+            scaleX: 0,
+            stagger: 0.01,
+            scrollTrigger: {
+                trigger: sect.current,
+                end: "bottom bottom",
+                start: "top top",
+                scrub: true,
+            },
+        });
     });
 
     return (
-        <section className="mb-44 mt-10 md:my-auto md:h-[200dvh] ">
-            <div className="sticky top-8 h-[150%] overflow-hidden md:h-dvh">
+        <section ref={sect} className="mb-44 mt-10 md:my-auto md:h-[200dvh] ">
+            <div className="sticky top-0 h-[150%] overflow-hidden md:h-dvh">
+                <span
+                    ref={scBar}
+                    className="absolute h-[0.1rem] w-full bg-gradient-to-r from-yellow-200 to-yellow-600"
+                ></span>
                 <h1
                     ref={featuredText}
-                    className="mx-auto mb-24 w-auto  text-center text-[2rem] font-bold uppercase md:mb-8 md:w-fit"
+                    className="mx-auto mb-24 mt-8 w-auto bg-gradient-to-br from-yellow-200  to-yellow-700 bg-clip-text text-center text-[2rem] font-bold uppercase text-transparent md:mb-8 md:w-fit"
                 >
                     Featured Rooms
                 </h1>
@@ -153,91 +190,25 @@ export default function FeaturedRooms({ isDark, matches }) {
                             stretch: 2,
                             depth: 500,
                             modifier: 1,
-                            // slideShadows: true,
                         }}
                         pagination={{ dynamicBullets: true, clickable: true }}
                         modules={[EffectCoverflow, Pagination]}
                         className="h-96 w-[80vw] overflow-hidden rounded-2xl"
                     >
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="dark:bg-[#2B2B28] pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] ">
-                                01
-                            </span>
-                            <span
-                                style={{
-                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
-                                }}
-                                className=" absolute h-full w-full rounded-2xl"
-                            ></span>
-                            <img
-                                alt="featured room 1"
-                                src={room1}
-                                className="m-auto h-96 w-full rounded-2xl object-cover outline-none"
-                            ></img>
+                            <RoomSlide id={1} roomNo={room1} isDark={isDark} />
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
-                                02
-                            </span>
-                            <span
-                                style={{
-                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
-                                }}
-                                className=" absolute h-full w-full rounded-2xl"
-                            ></span>
-                            <img
-                                alt="featured room 2"
-                                src={room2}
-                                className=" m-auto h-full w-full rounded-2xl object-cover"
-                            ></img>
+                            <RoomSlide id={2} roomNo={room2} isDark={isDark} />
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
-                                03
-                            </span>
-                            <span
-                                style={{
-                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
-                                }}
-                                className=" absolute h-full w-full rounded-2xl"
-                            ></span>
-                            <img
-                                alt="featured room 3"
-                                src={room3}
-                                className=" m-auto h-full w-full rounded-2xl object-cover"
-                            ></img>
+                            <RoomSlide id={3} roomNo={room3} isDark={isDark} />
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
-                                04
-                            </span>
-                            <span
-                                style={{
-                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
-                                }}
-                                className=" absolute h-full w-full rounded-2xl"
-                            ></span>
-                            <img
-                                alt="featured room 4"
-                                src={room4}
-                                className=" m-auto h-full w-full rounded-2xl object-cover"
-                            ></img>
+                            <RoomSlide id={4} roomNo={room4} isDark={isDark} />
                         </SwiperSlide>
                         <SwiperSlide className="relative h-full w-full rounded-2xl">
-                            <span className="pointer-events-none absolute -bottom-[0.7rem] z-10 rounded-tr-3xl bg-[#F1EFE6] p-2 text-5xl font-bold blur-[1px] dark:bg-[#2B2B28]">
-                                05
-                            </span>
-                            <span
-                                style={{
-                                    boxShadow: `inset 0 0 10px 10px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
-                                }}
-                                className=" absolute h-full w-full rounded-2xl"
-                            ></span>
-                            <img
-                                alt="featured room 5"
-                                src={room5}
-                                className=" m-auto h-full w-full rounded-2xl object-cover"
-                            ></img>
+                            <RoomSlide id={5} roomNo={room5} isDark={isDark} />
                         </SwiperSlide>
                     </Swiper>
                 )}

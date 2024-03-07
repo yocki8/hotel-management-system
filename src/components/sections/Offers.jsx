@@ -14,7 +14,6 @@ import spaSvg from "/src/assets/images/facility/svgs/spa.svg";
 import poolSvg from "/src/assets/images/facility/svgs/pool.svg";
 import theatreSvg from "/src/assets/images/facility/svgs/theatre.svg";
 
-//perspec
 const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
     const element = useRef(null);
     const card = useRef(null);
@@ -132,45 +131,64 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
 
 export default function Offers({ isDark, matches }) {
     const offerText = useRef(null);
+    const sect = useRef(null);
+    const scBar = useRef(null);
     gsap.registerPlugin(ScrollTrigger);
 
     useGSAP(() => {
         if (matches) {
             gsap.from(offerText.current, {
-                wordSpacing: "400px",
-                letterSpacing: "15px",
-                fontSize: "4rem",
+                wordSpacing: "1vw",
+                letterSpacing: "2vw",
+                fontSize: "5vw",
+                opacity: 0,
+                delay: 0.3,
                 duration: 1,
                 ease: "circ.out",
                 scrollTrigger: {
                     trigger: offerText.current,
-                    toggleActions: "play none none reverse",
+                    toggleActions: "play none none reset",
                     start: "top bottom",
                 },
             });
         } else {
             gsap.from(offerText.current, {
-                wordSpacing: matches ? "400px" : "0",
-                letterSpacing: matches ? "20px" : "6px",
-                delay: matches ? "0.3" : "1",
-
-                opacity: matches ? "1" : "0",
+                wordSpacing: "0",
+                letterSpacing: "6px",
+                delay: "1",
+                opacity: "0",
                 duration: 1,
-                fontSize: matches ? "5rem" : "none",
+                fontSize: "none",
                 scrollTrigger: {
                     trigger: offerText.current,
-                    toggleActions: "play none none reverse",
+                    toggleActions: "play none none reset",
                     start: "top bottom",
                 },
             });
         }
+
+        gsap.from(scBar.current, {
+            scaleX: 0,
+            stagger: 0.01,
+            scrollTrigger: {
+                trigger: sect.current,
+                end: "bottom bottom",
+                start: "top top",
+                scrub: true,
+            },
+        });
     });
 
     return (
-        <section className="">
+        <section ref={sect} className="relative w-full">
+            <div
+                ref={scBar}
+                className="sticky top-0 h-[0.1rem] w-full bg-gradient-to-r from-yellow-200 to-yellow-600"
+            ></div>
+
             <h1
                 ref={offerText}
-                className="sticky top-8 mx-auto w-fit overflow-hidden text-[2rem] font-bold uppercase md:mt-auto"
+                className="sticky top-8 mx-auto  w-fit overflow-hidden bg-gradient-to-br from-yellow-200 to-yellow-700 bg-clip-text text-center text-[2rem] font-bold  uppercase  text-transparent md:mt-auto"
             >
                 What we offer
             </h1>

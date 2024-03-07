@@ -1,22 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import profileIcon from "/src/assets/svg/profile.svg";
 import nightModeIcon from "/src/assets/svg/night-mode.svg";
 import dayModeIcon from "/src/assets/svg/day-mode.svg";
 
-export default function Navbar({ toggleDarkMode, isDark }) {
+const Btn = ({ btnName, activeButton, changeActiveButton }) => {
     return (
-        <nav className="flex md:h-[15vh] justify-between px-[2vw] py-5 ">
+        <li
+            onMouseOver={() => changeActiveButton(btnName)}
+            onMouseOut={() => changeActiveButton("Home")}
+            className="group grid h-full w-full cursor-pointer items-center px-1 md:px-2 "
+        >
+            <div
+                className={` grid h-5 overflow-hidden px-1  transition duration-200 ${btnName == activeButton ? "bg-yellow-600" : ""} rounded-2xl md:h-7 md:px-4`}
+            >
+                <div className="grid transition duration-300 group-hover:-translate-y-5 md:group-hover:-translate-y-7">
+                    <button>{btnName}</button>
+                    <button>{btnName}</button>
+                </div>
+            </div>
+        </li>
+    );
+};
+
+export default function Navbar({ matches, toggleDarkMode }) {
+    const [activeButton, setActiveButton] = useState("Home");
+
+    const changeActiveButton = (btnName) => {
+        setActiveButton(btnName);
+    };
+    return (
+        <nav className="flex justify-between px-2 py-5 md:h-[15vh] md:px-6 ">
             <ul className="flex items-center gap-2 md:gap-4">
                 <li>
-                    <h1 className="text-2xl font-extrabold text-yellow-600 ">
+                    <h1 className="text-4xl font-extrabold text-yellow-600 ">
                         Sunrise
                     </h1>
                 </li>
 
                 <li>
                     <div className="h-6 w-6 md:h-8 md:w-8">
-
-                        <img alt="profile icon" className="dark:invert" src={profileIcon}></img>
+                        <img
+                            alt="profile icon"
+                            className="dark:invert"
+                            src={profileIcon}
+                        ></img>
                     </div>
                 </li>
 
@@ -32,31 +59,34 @@ export default function Navbar({ toggleDarkMode, isDark }) {
                             className="duration-400 h-6 w-6 opacity-0 transition md:h-8 md:w-8 dark:opacity-100 dark:invert"
                             onClick={toggleDarkMode}
                         >
-                            <img alt="night mode icon" src={nightModeIcon}></img>
+                            <img
+                                alt="night mode icon"
+                                src={nightModeIcon}
+                            ></img>
                         </button>
                     </div>
                 </li>
             </ul>
 
-            <ul className=" grid grid-cols-3 items-center gap-4 text-sm font-bold md:gap-10 md:text-base ">
-                <li className=" grid h-6 overflow-hidden border-yellow-600  *:translate-y-0 *:transition *:duration-200 hover:border-b-2 hover:*:-translate-y-5 md:h-7 md:hover:*:-translate-y-6">
-                    <div className="grid">
-                        <button>HOME</button>
-                        <button>HOME</button>
-                    </div>
-                </li>
-                <li className=" grid h-6 overflow-hidden border-yellow-600  *:translate-y-0 *:transition *:duration-200 hover:border-b-2 hover:*:-translate-y-5 md:h-7 md:hover:*:-translate-y-6">
-                    <div className="grid">
-                        <button>ROOMS</button>
-                        <button>ROOMS</button>
-                    </div>
-                </li>
-                <li className=" grid h-6 overflow-hidden border-yellow-600  *:translate-y-0 *:transition *:duration-200 hover:border-b-2 hover:*:-translate-y-5 md:h-7 md:hover:*:-translate-y-6">
-                    <div className="grid">
-                        <button>ABOUT</button>
-                        <button>ABOUT</button>
-                    </div>
-                </li>
+            <ul className="grid grid-cols-3 items-center text-sm font-bold md:gap-0 md:text-xl ">
+                <Btn
+                    btnName={"Home"}
+                    matches={matches}
+                    activeButton={activeButton}
+                    changeActiveButton={changeActiveButton}
+                />
+                <Btn
+                    btnName={"Rooms"}
+                    matches={matches}
+                    activeButton={activeButton}
+                    changeActiveButton={changeActiveButton}
+                />
+                <Btn
+                    btnName={"About"}
+                    matches={matches}
+                    activeButton={activeButton}
+                    changeActiveButton={changeActiveButton}
+                />
             </ul>
         </nav>
     );

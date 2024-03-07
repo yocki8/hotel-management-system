@@ -9,6 +9,7 @@ import SplitType from "split-type";
 import { useRef } from "react";
 import gsap from "gsap";
 import ReactCurvedText from "react-curved-text";
+import { _colorStringFilter } from "gsap/gsap-core";
 
 function Number({ n }) {
     const { number } = useSpring({
@@ -20,6 +21,72 @@ function Number({ n }) {
     return <animated.div>{number.to((n) => n.toFixed(0))}</animated.div>;
 }
 
+const GetStarted = () => {
+    return (
+        <div className="grid place-items-center">
+            <button className="duration-400  my-auto rounded-xl border-4 border-black/50 bg-yellow-600 px-20 py-4 text-2xl font-semibold text-white transition hover:bg-yellow-400 dark:border-white">
+                BOOK NOW
+            </button>
+        </div>
+    );
+};
+
+const Counters = ({ roomType, isDark, number, matches }) => {
+    if (matches) {
+        return (
+            <li className="w-1/4 rounded-2xl bg-[#d1d1d1] md:bg-transparent ">
+                <h2 className="text-xl ">{roomType}</h2>
+                <h1 className="text-center text-[3rem] font-bold ">
+                    <Number n={number} />
+                </h1>
+            </li>
+        );
+    } else {
+        if (roomType == "Suite") roomType += " Rooms";
+        return (
+            <li className="relative h-full">
+                <div
+                    className=" relative mt-10"
+                    style={{
+                        transform: "perspective(2cm) rotateX(50deg)",
+                    }}
+                >
+                    <ReactCurvedText
+                        width={100}
+                        height={100}
+                        cx={50}
+                        cy={50}
+                        rx={35}
+                        ry={35}
+                        reversed={"reversed"}
+                        text={roomType}
+                        textProps={{
+                            style: {
+                                fontSize: 20,
+                                fontWeight: "bold",
+                            },
+                        }}
+                        textPathProps={{
+                            fill: `${isDark ? "#F1EFE6" : "black"}`,
+                        }}
+                        svgProps={{ className: "rotating-curved-text" }}
+                    />
+                    <div
+                        style={{
+                            background: `radial-gradient( ${!isDark ? "gray" : "black"},transparent)`,
+                        }}
+                        className="absolute left-1/2 top-1/2 grid h-[6.4rem] w-[6.4rem] -translate-x-1/2 -translate-y-1/2 items-center rounded-full bg-white/0"
+                    >
+                        <h1 className="m-auto grid h-14 w-14 items-center rounded-full text-2xl  font-bold outline">
+                            <Number n={number} />
+                        </h1>
+                    </div>
+                </div>
+            </li>
+        );
+    }
+};
+
 const Welcome = ({ isDark, matches }) => {
     const welcomeText = useRef(null);
 
@@ -28,81 +95,28 @@ const Welcome = ({ isDark, matches }) => {
             types: "chars,words",
         });
 
+        text.chars.forEach((char) => {
+            char.classList.add("transition-all", "duration-200", "mb-1/2");
+            char.addEventListener("mouseover", () => {
+                char.style.transform = "scaleY(2) translateY(-12%)";
+            });
+
+            char.addEventListener("mouseout", () => {
+                char.style.transform = "scaleY(1) translateY(0)";
+            });
+        });
+
         gsap.from(text.words, {
             opacity: 0,
             stagger: 0.3,
             delay: 1,
+            scaleY: 2,
         });
     });
 
-    const GetStarted = () => {
-        return (
-            <div className="grid place-items-center">
-                <button className="duration-400  my-auto rounded-xl border-4 border-black/50 bg-yellow-600 px-20 py-4 text-2xl font-semibold text-white transition hover:bg-yellow-400 dark:border-white">
-                    BOOK NOW
-                </button>
-            </div>
-        );
-    };
-
-    const Counters = ({ roomType, number, matches }) => {
-        if (matches) {
-            return (
-                <li className="w-1/4 rounded-2xl bg-[#d1d1d1] md:bg-transparent ">
-                    <h2 className="text-xl ">{roomType}</h2>
-                    <h1 className="text-center text-[3rem] font-bold ">
-                        <Number n={number} />
-                    </h1>
-                </li>
-            );
-        } else {
-            if (roomType == "Suite") roomType += " Rooms";
-            return (
-                <li className="relative h-full">
-                    <div
-                        className=" relative mt-10"
-                        style={{
-                            transform: "perspective(2cm) rotateX(50deg)",
-                        }}
-                    >
-                        <ReactCurvedText
-                            width={100}
-                            height={100}
-                            cx={50}
-                            cy={50}
-                            rx={35}
-                            ry={35}
-                            reversed={"reversed"}
-                            text={roomType}
-                            textProps={{
-                                style: {
-                                    fontSize: 20,
-                                    fontWeight: "bold",
-                                },
-                            }}
-                            textPathProps={{
-                                fill: `${isDark ? "#F1EFE6" : "black"}`,
-                            }}
-                            svgProps={{ className: "rotating-curved-text" }}
-                        />
-                        <div
-                            style={{
-                                background: `radial-gradient( ${!isDark ? "gray" : "black"},transparent)`,
-                            }}
-                            className="absolute left-1/2 top-1/2 grid h-[6.4rem] w-[6.4rem] -translate-x-1/2 -translate-y-1/2 items-center rounded-full bg-white/0"
-                        >
-                            <h1 className="m-auto grid h-14 w-14 items-center rounded-full text-2xl  font-bold outline">
-                                <Number n={number} />
-                            </h1>
-                        </div>
-                    </div>
-                </li>
-            );
-        }
-    };
     return (
         <div className="grid gap-16 md:w-[57%]">
-            <div className="z-10 mx-4 grid place-items-center md:mx-0">
+            <div className="z-10 mx-4 cursor-pointer grid place-items-center md:mx-0">
                 <h1
                     ref={welcomeText}
                     className="text-center text-[3.7rem] font-bold  leading-[4.7rem]"
@@ -120,15 +134,22 @@ const Welcome = ({ isDark, matches }) => {
             <ul className="flex h-[200%] -translate-y-24 items-center justify-evenly overflow-x-hidden text-center md:h-[100%] md:translate-y-0 md:justify-between md:overflow-hidden md:px-10">
                 <Counters
                     matches={matches}
+                    isDark={isDark}
                     roomType={"Basic Rooms"}
                     number={50}
                 />
                 <Counters
                     matches={matches}
+                    isDark={isDark}
                     roomType={"Luxury Rooms"}
                     number={120}
                 />
-                <Counters matches={matches} roomType={"Suite"} number={60} />
+                <Counters
+                    matches={matches}
+                    isDark={isDark}
+                    roomType={"Suite"}
+                    number={60}
+                />
             </ul>
         </div>
     );
@@ -136,7 +157,7 @@ const Welcome = ({ isDark, matches }) => {
 
 const SunExtra = () => {
     return (
-        <span className="pointer-events-none absolute">
+        <span className="pointer-events-none absolute select-none">
             <img
                 alt="sunrise logo"
                 src={halfSun}

@@ -107,6 +107,7 @@ export default function AboutHotel({ isDark, matches }) {
                     alt="half sun"
                     ref={sunSvg}
                     src={sun}
+                    style={{ filter: "drop-shadow(-10px 10px 5px black)" }}
                     className="absolute bottom-0 left-1/2 h-52 -translate-x-1/2"
                 ></img>
             </div>

@@ -7,6 +7,7 @@ import RoomPage from "./pages/RoomsPage";
 import NoPageFound from "./pages/NoPageFound";
 import "./index.css";
 
+
 const router = createBrowserRouter([
     {
         path: "/",

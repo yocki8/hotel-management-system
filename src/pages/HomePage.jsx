@@ -30,7 +30,7 @@ export default function HomePage() {
     };
     return (
         <div
-            className={`grid font-['Poppins'] text-[#2B2B28]  transition duration-300 dark:text-[#F1EFE6] ${darkMode ? "dark bg-[#2B2B28]" : "bg-[#F1EFE6]"}`}
+            className={` grid font-['Poppins'] text-[--darky] transition  duration-300 selection:bg-yellow-600 selection:text-yellow-200 dark:text-[--lighty] ${darkMode ? "dark bg-[--darky]" : "bg-[--lighty]"}`}
         >
             <Navbar
                 matches={matches}

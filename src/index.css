@@ -19,61 +19,44 @@ body::-webkit-scrollbar-thumb {
     }
 
     .d1 {
-        @apply bg-red-300 !important;
+        @apply bg-red-300/30 !important;
     }
     .d2 {
-        @apply bg-blue-300 !important;
+        @apply bg-blue-300/30 !important;
     }
     .d3 {
-        @apply bg-green-300 !important;
+        @apply bg-green-300/30 !important;
     }
     .d4 {
-        @apply bg-orange-300 !important;
+        @apply bg-orange-300/30 !important;
     }
     .d5 {
-        @apply bg-pink-300 !important;
+        @apply bg-pink-300/30 !important;
     }
-
 }
 
 .rotating-curved-text {
-  -webkit-animation: spin 10s linear infinite;
-  -moz-animation: spin 10s linear infinite;
-  animation: spin 10s linear infinite;
+    -webkit-animation: spin 10s linear infinite;
+    -moz-animation: spin 10s linear infinite;
+    animation: spin 10s linear infinite;
 }
 @-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
+    100% {
+        -moz-transform: rotate(360deg);
+    }
 }
 @-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 @keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
-/* .swiper-pagination-bullet-active {
- @apply dark:bg-[#2B2B28] bg-[#F1EFE6] p-[0.4rem] !important;
-} */
 .swiper-pagination-bullet {
- @apply rounded-none h-1 w-5 bg-gray-700 dark:bg-gray-300  !important;
+    @apply h-1 w-5 rounded-none bg-gray-700 dark:bg-gray-300  !important;
 }
-/* .swiper-pagination-bullet- {
- @apply dark:bg-[#2B2B28] bg-[#F1EFE6] !important;
-} */
-
-  /* --swiper-pagination-color: var(--swiper-theme-color);
-  --swiper-pagination-bullet-size: 8px;
-  --swiper-pagination-bullet-width: 8px;
-  --swiper-pagination-bullet-height: 8px;
-  --swiper-pagination-bullet-inactive-color: #000;
-  --swiper-pagination-bullet-inactive-opacity: 0.2;
-  --swiper-pagination-bullet-opacity: 1;
-  --swiper-pagination-bullet-horizontal-gap: 4px;
-  --swiper-pagination-bullet-vertical-gap: 6px; */
