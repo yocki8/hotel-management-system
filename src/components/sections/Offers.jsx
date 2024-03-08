@@ -70,7 +70,7 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
             <div
                 ref={element}
                 style={{ transform: "perspective(90cm)" }}
-                className="relative flex h-52 items-center justify-between overflow-hidden"
+                className="relative text-[white] flex h-52 items-center justify-between overflow-hidden"
             >
                 <h1
                     style={{
@@ -84,7 +84,7 @@ const Facility = ({ id, name, imgSvg, imgNo, isDark, matches }) => {
                     alt={`facility icon ${id}`}
                     ref={icon}
                     src={imgSvg}
-                    className={` pointer-events-none z-10 h-28 w-28 translate-x-[120px] opacity-100 drop-shadow-[0_0_10px_${isDark ? "black" : "white"}] transition  duration-500 dark:invert`}
+                    className={` pointer-events-none z-10 h-28 w-28 translate-x-[120px] opacity-100 drop-shadow-[0_0_10px_${isDark ? "black" : "white"}] transition  duration-500 invert`}
                 ></img>
 
                 <img
@@ -183,7 +183,7 @@ export default function Offers({ isDark, matches }) {
         <section ref={sect} className="relative w-full">
             <div
                 ref={scBar}
-                className="sticky top-0 h-[0.1rem] w-full bg-gradient-to-r from-yellow-200 to-yellow-600"
+                className="sticky top-0 h-1 dark:h-[0.1rem] w-full bg-gradient-to-r from-yellow-200 to-yellow-600"
             ></div>
 
             <h1

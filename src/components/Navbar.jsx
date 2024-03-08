@@ -11,7 +11,7 @@ const Btn = ({ btnName, activeButton, changeActiveButton }) => {
             className="group grid h-full w-full cursor-pointer items-center px-1 md:px-2 "
         >
             <div
-                className={` grid h-5 overflow-hidden px-1  transition duration-200 ${btnName == activeButton ? "bg-yellow-600" : ""} rounded-2xl md:h-7 md:px-4`}
+                className={` grid h-5 overflow-hidden px-1  transition duration-50 ${btnName == activeButton ? "bg-yellow-600 text-[--lighty]" : ""} rounded-2xl md:h-7 md:px-4`}
             >
                 <div className="grid transition duration-300 group-hover:-translate-y-5 md:group-hover:-translate-y-7">
                     <button>{btnName}</button>
@@ -29,10 +29,13 @@ export default function Navbar({ matches, toggleDarkMode }) {
         setActiveButton(btnName);
     };
     return (
-        <nav className="flex justify-between px-2 py-5 md:h-[15vh] md:px-6 ">
+        <nav
+            data-scroll-section
+            className="flex justify-between px-2 py-5 md:h-[15vh] md:px-6 "
+        >
             <ul className="flex items-center gap-2 md:gap-4">
                 <li>
-                    <h1 className="text-4xl font-extrabold text-yellow-600 ">
+                    <h1 className="text-xl md:text-4xl font-extrabold text-yellow-600 ">
                         Sunrise
                     </h1>
                 </li>

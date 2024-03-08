@@ -116,7 +116,7 @@ const Welcome = ({ isDark, matches }) => {
 
     return (
         <div className="grid gap-16 md:w-[57%]">
-            <div className="z-10 mx-4 cursor-pointer grid place-items-center md:mx-0">
+            <div className="z-10 mx-4 grid cursor-pointer place-items-center md:mx-0">
                 <h1
                     ref={welcomeText}
                     className="text-center text-[3.7rem] font-bold  leading-[4.7rem]"
@@ -167,28 +167,44 @@ const SunExtra = () => {
     );
 };
 
-const HotelImages = () => {
-    const Image = ({ imgNo }) => {
-        return (
-            <img
-                alt="hotel image"
-                className="h-[50vw] w-[50vw] object-cover opacity-80 transition-all duration-700 hover:scale-125 hover:opacity-100 md:h-full md:w-full"
-                draggable={false}
-                src={imgNo}
-            ></img>
-        );
-    };
+const Image = ({ imgNo }) => {
+    const cardCont = useRef(null);
+    const cardImg = useRef(null);
+    useGSAP(() => {
+        gsap.to(cardImg.current, {
+            yPercent: -35,
+            ease: "none",
+            scrollTrigger: {
+                trigger: cardCont.current,
+                start: "bottom bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
+    });
 
     return (
-        <div className=" mx-4 -mt-8 grid grid-cols-2 gap-2 *:overflow-hidden md:mt-0 md:w-[43%]  md:grid-rows-[repeat(2,210px)] md:gap-6 ">
-            <div className="rounded-tl-[30%] md:rounded-l-full">
+        <div ref={cardCont} className=" relative h-full w-full overflow-hidden">
+            <img
+                ref={cardImg}
+                src={imgNo}
+                className=" absolute bottom-[-40%]  h-[150%]  w-[100%] object-cover"
+            />
+        </div>
+    );
+};
+
+const HotelImages = () => {
+    return (
+        <div className=" mx-4 -mt-8 grid grid-cols-2 grid-rows-[repeat(2,180px)] gap-2 *:overflow-hidden md:mt-0 md:w-[43%] md:grid-rows-[repeat(2,210px)] md:gap-6 ">
+            <div className="h-full rounded-tl-[30%] md:rounded-l-full">
                 <Image imgNo={header1} />
             </div>
 
             <div className="rounded-tr-[30%] md:rounded-t-full">
                 <Image imgNo={header2} />
             </div>
-            <div className="rounded-bl-[30%] md:rounded-t-full">
+            <div className="h-full rounded-bl-[30%] md:rounded-t-full">
                 <Image imgNo={header3} />
             </div>
             <div className="rounded-br-[30%] md:rounded-r-full">

@@ -14,7 +14,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 
-const Room = ({ roomNo, id, currImg, isDark }) => {
+const Room = ({ roomNo, id, currImg }) => {
     const image = useRef(null);
     gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +27,7 @@ const Room = ({ roomNo, id, currImg, isDark }) => {
             ease: "power2.out",
             scrollTrigger: {
                 trigger: currImg.current,
-                start: "20% bottom",
+                start: "top bottom",
                 toggleActions: "play none none reset",
             },
         });
@@ -45,10 +45,7 @@ const Room = ({ roomNo, id, currImg, isDark }) => {
     return (
         <div
             ref={image}
-            className=" relative h-fit w-fit overflow-hidden rounded-2xl"
-            style={{
-                boxShadow: `0px 0px 100px 2px ${isDark ? "#2B2B28" : "#F1EFE6"}`,
-            }}
+            className=" relative h-fit w-fit overflow-hidden rounded-2xl transition-[filter] duration-300 hover:brightness-[1.2]"
         >
             <div>
                 <span className="pointer-events-none absolute -bottom-[0.7rem] left-5 z-10 text-5xl font-bold text-[--lighty] dark:text-[--darky]">
@@ -126,7 +123,7 @@ export default function FeaturedRooms({ isDark, matches }) {
             <div className="sticky top-0 h-[150%] overflow-hidden md:h-dvh">
                 <span
                     ref={scBar}
-                    className="absolute h-[0.1rem] w-full bg-gradient-to-r from-yellow-200 to-yellow-600"
+                    className="absolute hidden md:inline-block  h-1 w-full bg-gradient-to-r from-yellow-200 to-yellow-600 dark:h-[0.1rem]"
                 ></span>
                 <h1
                     ref={featuredText}
@@ -139,7 +136,7 @@ export default function FeaturedRooms({ isDark, matches }) {
                     <span className=" absolute h-full w-full">
                         <div
                             ref={currImg}
-                            className=" h-full w-full bg-cover bg-center opacity-0 blur-sm transition-all duration-300"
+                            className=" blursm h-full w-full bg-cover bg-center opacity-0 blur-sm transition-all duration-300"
                             style={{ backgroundImage: `url('${room1}')` }}
                         ></div>
                     </span>
