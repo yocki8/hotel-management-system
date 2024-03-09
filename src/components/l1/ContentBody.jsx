@@ -1,7 +1,6 @@
-"use client";
-import FeaturedRooms from "./sections/FeaturedRooms";
-import AboutHotel from "./sections/AboutHotel";
-import Offers from "./sections/Offers";
+import FeaturedRooms from "../l2/FeaturedRooms";
+import AboutHotel from "../l2/AboutHotel";
+import Offers from "../l2/Offers";
 
 export default function ContentBody({ isDark, matches }) {
     return (

@@ -2,28 +2,35 @@ import React, { useState } from "react";
 import profileIcon from "/src/assets/svg/profile.svg";
 import nightModeIcon from "/src/assets/svg/night-mode.svg";
 import dayModeIcon from "/src/assets/svg/day-mode.svg";
+import { Link } from "react-router-dom";
 
-const Btn = ({ btnName, activeButton, changeActiveButton }) => {
+const Btn = ({ btnName, activeButton, goTo, changeActiveButton, active }) => {
     return (
-        <li
-            onMouseOver={() => changeActiveButton(btnName)}
-            onMouseOut={() => changeActiveButton("Home")}
-            className="group grid h-full w-full cursor-pointer items-center px-1 md:px-2 "
-        >
-            <div
-                className={` grid h-5 overflow-hidden px-1  transition duration-50 ${btnName == activeButton ? "bg-yellow-600 text-[--lighty]" : ""} rounded-2xl md:h-7 md:px-4`}
+        <Link className="h-full" to={goTo}>
+            <li
+                onMouseOver={() => changeActiveButton(btnName)}
+                onMouseOut={() => changeActiveButton(active)}
+                className="group grid h-full w-full cursor-pointer items-center px-1 md:px-2 "
             >
-                <div className="grid transition duration-300 group-hover:-translate-y-5 md:group-hover:-translate-y-7">
-                    <button>{btnName}</button>
-                    <button>{btnName}</button>
+                <div
+                    className={` duration-50 grid h-5 overflow-hidden  px-1 transition ${btnName == activeButton ? "bg-yellow-600 text-[--lighty]" : ""} rounded-2xl md:h-7 md:px-4`}
+                >
+                    <div className="grid transition duration-300 group-hover:-translate-y-5 md:group-hover:-translate-y-7">
+                        <button>{btnName}</button>
+                        <button>{btnName}</button>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
+        </Link>
     );
 };
 
-export default function Navbar({ matches, toggleDarkMode }) {
-    const [activeButton, setActiveButton] = useState("Home");
+export default function Navbar({
+    matches = true,
+    toggleDarkMode = () => null,
+    active,
+}) {
+    const [activeButton, setActiveButton] = useState(active);
 
     const changeActiveButton = (btnName) => {
         setActiveButton(btnName);
@@ -35,7 +42,7 @@ export default function Navbar({ matches, toggleDarkMode }) {
         >
             <ul className="flex items-center gap-2 md:gap-4">
                 <li>
-                    <h1 className="text-xl md:text-4xl font-extrabold text-yellow-600 ">
+                    <h1 className="text-xl font-extrabold text-yellow-600 md:text-4xl ">
                         Sunrise
                     </h1>
                 </li>
@@ -71,24 +78,30 @@ export default function Navbar({ matches, toggleDarkMode }) {
                 </li>
             </ul>
 
-            <ul className="grid grid-cols-3 items-center text-sm font-bold md:gap-0 md:text-xl ">
+            <ul className="grid  grid-cols-3 items-center text-sm font-bold md:gap-0 md:text-xl ">
                 <Btn
                     btnName={"Home"}
+                    goTo="/"
                     matches={matches}
                     activeButton={activeButton}
                     changeActiveButton={changeActiveButton}
+                    active={active}
                 />
                 <Btn
                     btnName={"Rooms"}
+                    goTo="/rooms"
                     matches={matches}
                     activeButton={activeButton}
                     changeActiveButton={changeActiveButton}
+                    active={active}
                 />
                 <Btn
                     btnName={"About"}
+                    goTo="/rooms"
                     matches={matches}
                     activeButton={activeButton}
                     changeActiveButton={changeActiveButton}
+                    active={active}
                 />
             </ul>
         </nav>

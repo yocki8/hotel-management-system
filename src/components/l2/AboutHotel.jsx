@@ -2,9 +2,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import SplitType from "split-type";
-import sun from "/src/assets/svg/sun.svg";
-import { MaskContainer } from "/src/components/Aceternity/components/MaskContainer.tsx";
+import sun from "/sun.svg";
+import { MaskContainer } from "/src/libraries/aceternity/components/MaskContainer.tsx";
+import { Link } from "react-router-dom";
 
 export default function AboutHotel({ isDark, matches }) {
     const about = useRef(null);
@@ -16,7 +16,6 @@ export default function AboutHotel({ isDark, matches }) {
         if (matches) {
             gsap.from(about.current, {
                 y: 400,
-
                 opacity: 0,
                 duration: 2,
                 scrollTrigger: {
@@ -27,7 +26,6 @@ export default function AboutHotel({ isDark, matches }) {
 
             gsap.from(about2.current, {
                 y: 400,
-
                 opacity: 0,
                 duration: 2,
                 scrollTrigger: {
@@ -83,22 +81,25 @@ export default function AboutHotel({ isDark, matches }) {
                                 with us today and discover the essence of
                                 hospitality at Sunrise.
                             </h1>
-                            <button
-                                style={{
-                                    boxShadow: `-10px 10px 5px ${isDark ? "black" : "white"}`,
-                                }}
-                                className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 -skew-x-6 overflow-hidden bg-yellow-600 px-6 py-6 text-[2rem] transition duration-500 hover:scale-105"
-                            >
-                                <div className="absolute left-0 top-0 grid h-full w-full place-items-center *:scale-0 *:hover:scale-[15]  ">
-                                    <div
-                                        ref={btn}
-                                        className="-z-10 h-4 w-4 rounded-full bg-yellow-700 transition-all duration-1000 "
-                                    ></div>
-                                </div>
-                                <h1 className="pointer-events-none">
-                                    Book Now
-                                </h1>
-                            </button>
+
+                            <Link to="/rooms">
+                                <button
+                                    style={{
+                                        boxShadow: `-10px 10px 5px ${isDark ? "black" : "white"}`,
+                                    }}
+                                    className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 -skew-x-6 overflow-hidden bg-yellow-600 px-6 py-6 text-[2rem] transition duration-500 hover:scale-105"
+                                >
+                                    <div className="absolute left-0 top-0 grid h-full w-full place-items-center *:scale-0 *:hover:scale-[15]  ">
+                                        <div
+                                            ref={btn}
+                                            className="-z-10 h-4 w-4 rounded-full bg-yellow-700 transition-all duration-1000 "
+                                        ></div>
+                                    </div>
+                                    <h1 className="pointer-events-none">
+                                        Book Now
+                                    </h1>
+                                </button>
+                            </Link>
                         </div>
                     </MaskContainer>
                 )}

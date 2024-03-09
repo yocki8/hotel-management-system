@@ -5,11 +5,12 @@ import header4 from "/src/assets/images/header/header4.webp";
 import halfSun from "/src/assets/images/half-sun.png";
 import { useSpring, animated } from "react-spring";
 import { useGSAP } from "@gsap/react";
-import SplitType from "split-type";
 import { useRef } from "react";
+import SplitType from "split-type";
 import gsap from "gsap";
 import ReactCurvedText from "react-curved-text";
 import { _colorStringFilter } from "gsap/gsap-core";
+import { Link } from "react-router-dom";
 
 function Number({ n }) {
     const { number } = useSpring({
@@ -23,11 +24,13 @@ function Number({ n }) {
 
 const GetStarted = () => {
     return (
-        <div className="grid place-items-center">
-            <button className="duration-400  my-auto rounded-xl border-4 border-black/50 bg-yellow-600 px-20 py-4 text-2xl font-semibold text-white transition hover:bg-yellow-400 dark:border-white">
-                BOOK NOW
-            </button>
-        </div>
+        <Link to="/rooms">
+            <div className="grid place-items-center">
+                <button className="duration-400  my-auto rounded-xl border-4 border-black/50 bg-yellow-600 px-20 py-4 text-2xl font-semibold text-white transition hover:bg-yellow-400 dark:border-white">
+                    BOOK NOW
+                </button>
+            </div>
+        </Link>
     );
 };
 
@@ -172,11 +175,11 @@ const Image = ({ imgNo }) => {
     const cardImg = useRef(null);
     useGSAP(() => {
         gsap.to(cardImg.current, {
-            yPercent: -35,
+            top: 0,
             ease: "none",
             scrollTrigger: {
                 trigger: cardCont.current,
-                start: "bottom bottom",
+                start: "top 70%",
                 end: "bottom top",
                 scrub: true,
             },
@@ -184,11 +187,14 @@ const Image = ({ imgNo }) => {
     });
 
     return (
-        <div ref={cardCont} className=" relative h-full w-full overflow-hidden">
+        <div
+            ref={cardCont}
+            className=" relative h-full w-full overflow-hidden transition duration-300 hover:scale-110"
+        >
             <img
                 ref={cardImg}
                 src={imgNo}
-                className=" absolute bottom-[-40%]  h-[150%]  w-[100%] object-cover"
+                className=" absolute bottom-0 h-[150%] w-[100%] object-cover"
             />
         </div>
     );
