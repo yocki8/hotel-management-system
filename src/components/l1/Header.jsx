@@ -98,17 +98,6 @@ const Welcome = ({ isDark, matches }) => {
             types: "chars,words",
         });
 
-        text.chars.forEach((char) => {
-            char.classList.add("transition-all", "duration-200", "mb-1/2");
-            char.addEventListener("mouseover", () => {
-                char.style.transform = "scaleY(2) translateY(-12%)";
-            });
-
-            char.addEventListener("mouseout", () => {
-                char.style.transform = "scaleY(1) translateY(0)";
-            });
-        });
-
         gsap.from(text.words, {
             opacity: 0,
             stagger: 0.3,

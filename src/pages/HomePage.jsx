@@ -7,7 +7,7 @@ export default function HomePage() {
     const { isDark, toggleDarkMode, matches } = useData();
     return (
         <div
-            className={` font-['Poppins'] text-[--darky] transition duration-300 selection:bg-yellow-600 selection:text-yellow-200 dark:text-[--lighty] ${isDark ? "dark bg-[--darky]" : "bg-[--lighty]"}`}
+            className={`bg-[--lighty] font-['Poppins'] text-[--darky] transition duration-300 selection:bg-yellow-600 selection:text-yellow-200 dark:bg-[--darky] dark:text-[--lighty] ${isDark ? "dark" : ""}`}
         >
             <Navbar
                 matches={matches}

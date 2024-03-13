@@ -15,22 +15,20 @@ export default function AboutHotel({ isDark, matches }) {
     useGSAP(() => {
         if (matches) {
             gsap.from(about.current, {
-                y: 400,
+                y: 200,
                 opacity: 0,
-                duration: 2,
                 scrollTrigger: {
                     trigger: about.current,
-                    start: "top 90%",
+                    start: "-200 90%",
                 },
             });
 
             gsap.from(about2.current, {
-                y: 400,
+                y: 200,
                 opacity: 0,
-                duration: 2,
                 scrollTrigger: {
                     trigger: about2.current,
-                    start: "top 90%",
+                    start: "-200 90%",
                 },
             });
         }
