@@ -31,5 +31,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <DataProvider>
         <RouterProvider router={router} />
     </DataProvider>
-    </React.StrictMode>
+    </React.StrictMode >
 );
